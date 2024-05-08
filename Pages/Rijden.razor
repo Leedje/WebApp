@@ -1,0 +1,226 @@
+﻿@page "/rijden"
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Zelf rijden</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div id="rijden-container">
+        <header>
+            <h1>WebCam</h1>
+            <div id="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <nav>
+            <ul id="desktop-nav">
+                <li><a href="">Home</a></li>
+                <li><a href="rijden">Rijden</a></li>
+                <li><a href="#details">Details</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <nav id="mobile-nav">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="rijden">Rijden</a></li>
+                <li><a href="#details">Details</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+
+
+        <div id="container-video">
+            <div id="new-video">
+                <!-- replace localhost in src with actual domain name -->
+                <iframe title="frame"
+                        src="https://player.twitch.tv/?channel=lucaskemperman1&parent=localhost" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        scrolling="no" 
+                        height="378" 
+                        width="620">
+                </iframe>
+
+
+                <button id="startStopButton" onclick="toggleVideo()">Start Video</button>
+                <p id="timer"> 0 : 0 </p>
+            </div>
+
+            <div id="control-robot">
+                <div id="control">
+                    <button title="arrow up" type="button" id="arrow-up" @onclick="front"><i class="fas fa-arrow-up"></i></button>
+                    <button title="arrow down" type="button" id="arrow-down" @onclick="back"><i class="fas fa-arrow-down"></i></button>
+                    <button title="arrow left" type="button" id="arrow-left" @onclick="left"><i class="fas fa-arrow-left"></i></button>
+                    <button title="arrow left" type="button" id="stopbtn" @onclick="stop"><div id="circle"></div></button>
+                    <button title="arrow right" type="button" id="arrow-right" @onclick="right"><i class="fas fa-arrow-right"></i></button>
+
+                    @code {
+
+                        //Voer nieuwe IP adres hier in:
+                            String ipAdres = ("145.93.232.26");
+
+                        private async Task front()
+                        {
+                            try
+                            {
+                                // Replace with your actual Arduino IP and endpoint
+                                var base_url = $"http://{ipAdres}"; // Construct the base URL
+                                var endpoint = "/front"; // Your specific endpoint
+                                var url = $"{base_url}{endpoint}"; // Combine base URL and endpoint
+
+                                using (var client = new HttpClient())
+                                {
+                                    var response = await client.GetAsync(url);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        Console.WriteLine("Robot moving forwards.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Robot not reachable");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                        private async Task back()
+                        {
+                            try
+                            {
+                                // Replace with your actual Arduino IP and endpoint
+                                var base_url = $"http://{ipAdres}"; // Construct the base URL
+                                var endpoint = "/back"; // Your specific endpoint
+                                var url = $"{base_url}{endpoint}"; // Combine base URL and endpoint
+
+                                using (var client = new HttpClient())
+                                {
+                                    var response = await client.GetAsync(url);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        Console.WriteLine("Robot moving backwards.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Robot not reachable");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                        private async Task left()
+                        {
+                            try
+                            {
+                                // Replace with your actual Arduino IP and endpoint
+                                var base_url = $"http://{ipAdres}"; // Construct the base URL
+                                var endpoint = "/left"; // Your specific endpoint
+                                var url = $"{base_url}{endpoint}"; // Combine base URL and endpoint
+
+                                using (var client = new HttpClient())
+                                {
+                                    var response = await client.GetAsync(url);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        Console.WriteLine("Robot turned left.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Robot not reachable");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                         private async Task right()
+                        {
+                            try
+                            {
+                                // Replace with your actual Arduino IP and endpoint
+                                var base_url = $"http://{ipAdres}"; // Construct the base URL
+                                var endpoint = "/right"; // Your specific endpoint
+                                var url = $"{base_url}{endpoint}"; // Combine base URL and endpoint
+
+                                using (var client = new HttpClient())
+                                {
+                                    var response = await client.GetAsync(url);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        Console.WriteLine("Robot turned right.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Robot not reachable");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                        private async Task stop()
+                        {
+                            try
+                            {
+                                // Replace with your actual Arduino IP and endpoint
+                                var base_url = $"http://{ipAdres}"; // Construct the base URL
+                                var endpoint = "/stop"; // Your specific endpoint
+                                var url = $"{base_url}{endpoint}"; // Combine base URL and endpoint
+
+                                using (var client = new HttpClient())
+                                {
+                                    var response = await client.GetAsync(url);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        Console.WriteLine("Robot stopped.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Robot not reachable");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="rijden.js"></script>
+</body>
+
+</html>

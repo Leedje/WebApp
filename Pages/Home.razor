@@ -1,0 +1,51 @@
+﻿@page "/"
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCam</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1>WebCam</h1>
+            <div id="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <nav>
+            <ul id="desktop-nav">
+                <li><a href="">Home</a></li>
+                <li><a href="rijden">Rijden</a></li>
+                <li><a href="#details">Details</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <nav id="mobile-nav">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="rijden">Rijden</a></li>
+                <li><a href="#details">Details</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div id="cam">
+            <img alt="cam" src="./afbeelding/Double-1.jpeg" />
+        </div>
+
+        <button class="shadow-dreamy" onclick="window.location.href='path/c#file.cs'">Verbinden</button>
+    </div>
+    <script src="homepage.js"></script>
+</body>
+
+</html>
